@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -29,26 +29,28 @@
         <div class="row justify-content-between">
             <div class="col-md-4">
                 <div class="progress w-75" style="height: 20px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" id="yourHealth" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0"
+                        aria-valuemax="100"></div>
                 </div>
-                <img src="assets/images/Bulbasaur.png" class="img-fluid rounded float-left" alt="Responsive image">
+                <img src="assets/images/Bulbasaur.png" class="img-fluid rounded float-left" id="fightingPokemon" alt="Responsive image">
             </div>
             <div class="col-md-4">
                 <div class="progress w-75" style="height: 20px;">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-success" id="enemyHealth" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0"
+                        aria-valuemax="100"></div>
                 </div>
-                <img src="assets/images/Chamander.png" class="img-fluid rounded float-left" alt="Responsive image">
+                <img src="assets/images/Chamander.png" class="img-fluid rounded float-left" id="enemyFightingPokemon" alt="Responsive image">
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
-                <button type="button" class="btn btn-lg btn-block btn-danger">Attack</button>
-                <button type="button" class="btn btn-lg btn-block btn-success">Block </button>
-                <button type="button" class="btn btn-lg btn-block btn-primary">Special </button>
+                <button type="button" class="btn btn-lg btn-block btn-danger" id="attack">Attack</button>
+                <button type="button" class="btn btn-lg btn-block btn-success" id="block">Block </button>
+                <button type="button" class="btn btn-lg btn-block btn-primary" id="special">Special </button>
             </div>
             <div class="col-sm-2">
-                <img src="assets/images/Chamander.png" class="img-fluid rounded float-left" alt="Responsive image">
-                <img src="assets/images/Squirtle.png" class="img-fluid rounded float-left" alt="Responsive image">
+                <img src="assets/images/Chamander.png" class="img-fluid rounded float-left" id="topPokemon" alt="Responsive image">
+                <img src="assets/images/Squirtle.png" class="img-fluid rounded float-left" id="bottomPokemon" alt="Responsive image">
             </div>
             <div class="col-sm-2">
 
@@ -57,13 +59,16 @@
 
             </div>
             <div class="col-sm-2">
+                <img src="assets/images/dead.png" class="img-fluid rounded float-left" alt="Responsive image">
                 <img src="assets/images/Squirtle.png" class="img-fluid rounded float-left" alt="Responsive image">
             </div>
             <div class="col-sm-2">
-                <img src="assets/images/dead.png" class="img-fluid rounded float-left" alt="Responsive image">
+
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="assets/javascript/game.js"></script>
 </body>
 
 </html>
