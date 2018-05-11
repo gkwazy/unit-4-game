@@ -62,19 +62,42 @@ $("#bottomPokemon").on("click", function () {
 });
 
 $("#attack").on("click", function () {
-    attack(fightingPokemon, enemyFightingPokemon);
+    attack(fightingPokemon, enemyFightingPokemon, 1);
+    computerAction(enemyFightingPokemon, fightingPokemon);
+
 });
 
-function attack(attackingPokemon, defendingPokemon) {
+function computerAction(enemy, player) {
+    var choice = Math.floor(Math.random() * 3);
+    switch (choice) {
+        case 0: attack(enemyFightingPokemon, fightingPokemon, 2)
+            break;
+        case 1: changeEnemy();
+            break;
+        case 2: changeEnemy();
+            break;
+    }
+}
+
+function attack(attackingPokemon, defendingPokemon, personAttacking) {
     defendingPokemon.health = defendingPokemon.health -
         (attackingPokemon.attack + Math.floor(Math.random() * 15));
     console.log("pokemon attacked " + defendingPokemon.health);
     console.log("attack in the button");
-    var healthPercent = Math.round(100 * (enemyFightingPokemon.health / 120));
     console.log(healthPercent);
-    document.getElementById("enemyHealth").style.width = healthPercent + "%";
-    console.log(enemyFightingPokemon.health);
-    console.log(document.getElementById("enemyHealth").style.width);
+    if (personAttacking == 1) {
+        var healthPercent = Math.round(100 * (enemyFightingPokemon.health / 120));
+        document.getElementById("enemyHealth").style.width = healthPercent + "%";
+        console.log(enemyFightingPokemon.health);
+        console.log(document.getElementById("enemyHealth").style.width);
+    }
+    else if (personAttacking == 2) {
+        var healthPercent = Math.round(100 * (fightingPokemon.health / 120));
+        document.getElementById("yourHealth").style.width = healthPercent + "%";
+        console.log("your dude " + fightingPokemon.health);
+        console.log(document.getElementById("yourHealth").style.width);
+    }
+
 }
 
 function change(position) {
@@ -107,31 +130,35 @@ function change(position) {
     console.log(tempPokemon)
     console.log(waitingPokemonBottom)
     console.log(waitingPokemonTop)
+    var healthPercent = Math.round(100 * (fightingPokemon.health / 120));
+    document.getElementById("yourHealth").style.width = healthPercent + "%";
+    console.log("your dude " + fightingPokemon.health);
+    console.log(document.getElementById("yourHealth").style.width);
 }
-function changeEnemy(position) {
+function changeEnemy() {
     console.log("methond called")
-    if (position == "top") {
+    var computerSwitch = Math.floor(Math.random() * 2);
+
+    if (computerSwitch == 0) {
         var tempPokemon;
-        tempPokemon = fightingPokemon;
-        fightingPokemon = waitingPokemonTop;
-        waitingPokemonTop = tempPokemon;
-        document.getElementById("fightingPokemon").src = fightingPokemon.img;
-        document.getElementById("topPokemon").src = waitingPokemonTop.img;
-        console.log("top")
+        tempPokemon = enemyFightingPokemon;
+        enemyFightingPokemon = waitingEnemyPokemonTop;
+        waitingEnemyPokemonTop = tempPokemon;
+        document.getElementById("enemyFightingPokemon").src = enemyFightingPokemon.img;
+        document.getElementById("waitingEnemyPokemonTop").src = waitingEnemyPokemonTop.img;
+        console.log("waitingEnemyPokemonTop")
     }
-    else if (position == "bottom") {
+    else if (computerSwitch == 1) {
         var tempPokemon;
-        tempPokemon = fightingPokemon;
-        fightingPokemon = waitingPokemonBottom;
-        waitingPokemonBottom = tempPokemon;
-        console.log(fightingPokemon + " " + tempPokemon + " " + waitingPokemonBottom)
-        document.getElementById("fightingPokemon").src = fightingPokemon.img;
-        document.getElementById("bottomPokemon").src = waitingPokemonBottom.img;
-        console.log("bot")
+        tempPokemon = enemyFightingPokemon;
+        enemyFightingPokemon = waitingEnemyPokemonBottom;
+        waitingEnemyPokemonBottom = tempPokemon;
+        console.log(enemyFightingPokemon + " " + tempPokemon + " " + waitingPokemonBottom)
+        document.getElementById("enemyFightingPokemon").src = enemyFightingPokemon.img;
+        document.getElementById("waitingEnemyPokemonBottom").src = waitingEnemyPokemonBottom.img;
+        console.log("fdafd bot")
     }
-    else {
-        alert("error!!!!!!!!!!!!!!");
-    }
+
 
 
     console.log(fightingPokemon)
