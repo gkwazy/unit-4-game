@@ -1,8 +1,9 @@
+
 var bulbasaur = {
     name: "Bulbasaur",
     type: "grass",
     health: 120,
-    attack: 25,
+    attack: 5,
     living: true,
     img: "assets/images/Bulbasaur.png",
 }
@@ -10,7 +11,7 @@ var chamander = {
     name: "Chamander",
     type: "fire",
     health: 120,
-    attack: 25,
+    attack: 5,
     living: true,
     img: "assets/images/Chamander.png",
 }
@@ -18,7 +19,7 @@ var squirtle = {
     name: "Squirtle",
     type: "water",
     health: 120,
-    attack: 25,
+    attack: 5,
     living: true,
     img: "assets/images/Squirtle.png",
 }
@@ -26,7 +27,7 @@ var enemyBulbasaur = {
     name: "Bulbasaur",
     type: "grass",
     health: 120,
-    attack: 25,
+    attack: 5,
     living: true,
     img: "assets/images/Bulbasaur.png",
 }
@@ -34,7 +35,7 @@ var enemyChamander = {
     name: "Chamander",
     type: "fire",
     health: 120,
-    attack: 25,
+    attack: 5,
     living: true,
     img: "assets/images/Chamander.png",
 }
@@ -42,10 +43,13 @@ var enemySquirtle = {
     name: "Squirtle",
     type: "water",
     health: 120,
-    attack: 25,
+    attack: 5,
     living: true,
     img: "assets/images/Squirtle.png",
 }
+
+
+
 var fightingPokemon = bulbasaur;
 var waitingPokemonTop = chamander;
 var waitingPokemonBottom = squirtle;
@@ -54,11 +58,12 @@ var waitingEnemyPokemonTop = enemyBulbasaur;
 var waitingEnemyPokemonBottom = enemySquirtle;
 var gamerunning = true;
 
-
+computerPick();
 Battling();
 
 
 function Battling() {
+
     $("#topPokemon").on("click", function () {
         change("top");
     });
@@ -72,6 +77,7 @@ function Battling() {
         computerAction(enemyFightingPokemon, fightingPokemon);
         if (fightingPokemon.health < 0) {
             fightingPokemon.living = false;
+            console.log("your pokmon dead")
             fightingPokemon.img = "assets/images/dead.png"
             if (waitingPokemonTop.living == true) {
                 change("top")
@@ -82,6 +88,7 @@ function Battling() {
         }
         if (enemyFightingPokemon.health < 0) {
             enemyFightingPokemon.living = false;
+            console.log("enemy pokmon dead")
             enemyFightingPokemon.img = "assets/images/dead.png"
             if (waitingEnemyPokemonTop.living == true) {
                 changeEnemy("top")
@@ -91,16 +98,38 @@ function Battling() {
             }
         }
 
+
+        if (!fightingPokemon.living && !waitingPokemonBottom.living && !waitingPokemonTop.living) {
+            alert("You Lose!!!");
+            gameOver();
+        }
+
+        if (!enemyFightingPokemon.living && !waitingEnemyPokemonBottom.living && !waitingEnemyPokemonTop.living) {
+            alert("You Win");
+            gameOver();
+        }
     });
-    if (!fightingPokemon.living && !waitingPokemonBottom.living && !waitingEnemyPokemonTop.living
-        || !enemyFightingPokemon.living && !waitingEnemyPokemonBottom && !waitingEnemyPokemonTop) {
-        gamerunning = false;
-    }
 }
 
 
 
+function gameOver() {
 
+    location.reload();
+
+
+}
+function computerPick() {
+    var choice = Math.floor(Math.random() * 3);
+    switch (choice) {
+        case 0: changeEnemy("top");
+            break;
+        case 1: changeEnemy("bottom");
+            break;
+        case 2:
+            break;
+    }
+}
 function computerAction(enemy, player) {
     var choice = Math.floor(Math.random() * 3);
     switch (choice) {
@@ -115,7 +144,7 @@ function computerAction(enemy, player) {
 
 function attack(attackingPokemon, defendingPokemon, personAttacking) {
     defendingPokemon.health = defendingPokemon.health -
-        (attackingPokemon.attack + Math.floor(Math.random() * 15));
+        (attackingPokemon.attack + Math.floor(Math.random() * 35));
     console.log("pokemon attacked " + defendingPokemon.health);
     console.log("attack in the button");
     console.log(healthPercent);
@@ -131,10 +160,6 @@ function attack(attackingPokemon, defendingPokemon, personAttacking) {
         console.log("your dude " + fightingPokemon.health);
         console.log(document.getElementById("yourHealth").style.width);
     }
-
-}
-
-function block(attackingPokemon, defendingPokemon, personAttacking) {
 
 }
 
@@ -195,9 +220,9 @@ function changeEnemy() {
             document.getElementById("waitingEnemyPokemonTop").src = waitingEnemyPokemonTop.img;
             console.log("waitingEnemyPokemonTop")
         }
-        else (alert("You can't tade in a defeated Pokemon"))
+        else (alert("Computer can't tade in a defeated Pokemon"))
     }
-    else if (computerSwitch == 1) {
+    if (computerSwitch == 1) {
         var tempPokemon;
         if (waitingEnemyPokemonBottom.health > 0) {
             tempPokemon = enemyFightingPokemon;
