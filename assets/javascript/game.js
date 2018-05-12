@@ -54,11 +54,8 @@ var waitingEnemyPokemonTop = enemyBulbasaur;
 var waitingEnemyPokemonBottom = enemySquirtle;
 var gamerunning = true;
 
-while (gamerunning) {
-    Battling();
-}
 
-$('#myModal').modal({ show: true });
+Battling();
 
 
 function Battling() {
@@ -134,6 +131,10 @@ function attack(attackingPokemon, defendingPokemon, personAttacking) {
         console.log("your dude " + fightingPokemon.health);
         console.log(document.getElementById("yourHealth").style.width);
     }
+
+}
+
+function block(attackingPokemon, defendingPokemon, personAttacking) {
 
 }
 
